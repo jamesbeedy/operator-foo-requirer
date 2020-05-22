@@ -26,10 +26,10 @@ class FooRequires(Object):
         # self.on_relation_changed() to handle the event.
         self.framework.observe(
             charm.on[relation_name].relation_changed,
-            self.on_relation_changed
+            self._on_relation_changed
         )
 
-    def on_relation_changed(self, event):
+    def _on_relation_changed(self, event):
         """This method retrieves the value for 'foo'
         (set by the provides side of the relation) from the
         event.relation.data on the relation-changed hook event.
@@ -52,16 +52,16 @@ class FooRequirerCharm(CharmBase):
     def __init__(self, *args):
         super().__init__(*args)
 
-        self.framework.observe(self.on.start, self.on_start)
-        self.framework.observe(self.on.install, self.on_install)
+        self.framework.observe(self.on.start, self._on_start)
+        self.framework.observe(self.on.install, self._on_install)
 
         # Adds our requiring side of the relation, FooRequires to the charm.
         self.foo = FooRequires(self, "foo")
 
-    def on_start(self, event):
+    def _on_start(self, event):
         pass
 
-    def on_install(self, event):
+    def _on_install(self, event):
         pass
 
 
