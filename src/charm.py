@@ -34,8 +34,13 @@ class FooRequires(Object):
         (set by the provides side of the relation) from the
         event.relation.data on the relation-changed hook event.
         """
-        # Retrieve and log the value for 'foo'.
-        logger.info(event.relation.data[event.unit]['foo'])
+        # Retrieve and log the value for 'foo' if it exists in
+        # the relation data.
+        foo = event.relation.data[event.unit].get('foo', None)
+        if foo is not None:
+            logger.info(f"The value for 'foo' is {foo}!")
+        else:
+            logger.warning("'foo' not in relation data")
 
 
 class FooRequirerCharm(CharmBase):
