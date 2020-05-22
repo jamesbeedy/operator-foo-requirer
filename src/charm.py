@@ -44,8 +44,8 @@ class FooRequires(Object):
 
 
 class FooRequirerCharm(CharmBase):
-    """This charm demonstrates the requirer side of the relationship by
-    extending CharmBase with a custom 'requires' event object that observes
+    """This charm demonstrates the 'requires' side of the relationship by
+    extending CharmBase with an event object that observes
     the relation-changed hook event.
     """
     
